@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <%- include('./layout/head') %>
+
+</head>
+
+<body>
+    <header>
+        <img src="../public/img/the_simpsons.png" />
+        <%- include('./layout/header') %>
+    </header>
+
+    <main>
+
+
+        <% data.forEach(data => { %>
+            <div class="home">
+
+                <h3>
+                    <%= data.character %>
+                </h3>
+
+                <img src="<%= data.image %>"> </image>
+                <h4> Quote :
+                    <%= data.quote%>
+                </h4>
+
+                <form action="/saveToDB" method="POST">
+
+
+                    <input type="hidden" name="quote" value="<%= data.quote %>">
+                    <input type="hidden" name="character" value="<%= data.character %>">
+                    <input type="hidden" name="image" value="<%= data.image %>">
+                    <input type="hidden" name="characterDirection" value="<%= data.characterDirection %>">
+                    <input class="savebt" type="submit" value="Save Quote">
+                </form>
+            </div>
+            <% }) %>
+    </main>
+</body>
+
+</html>
